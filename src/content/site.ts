@@ -14,8 +14,8 @@ export type ReadingEntry = { author: string; title: string };
 export type LinkEntry = { label: string; href: string; handle: string };
 
 export const SITE = {
-  handle: "iyasin",
-  fullName: "iyasin",
+  handle: "ihsaan",
+  fullName: "ihsaan",
   oneliner:
     "Engineer. Medicine, infrastructure, and the occasional physical object.",
   location: "Cambridge, MA",
@@ -38,7 +38,7 @@ export const SITE = {
   links: [
     { label: "github",   href: "https://github.com/iyasinn",      handle: "iyasinn" },
     { label: "linkedin", href: "https://linkedin.com/in/iyasinn", handle: "iyasinn" },
-    { label: "email",    href: "mailto:hello@iyasin.dev",          handle: "hello@iyasin.dev" },
+    { label: "email",    href: "mailto:hello@ihsaan.dev",          handle: "hello@ihsaan.dev" },
     { label: "twitter",  href: "https://twitter.com/iyasinn",      handle: "iyasinn" },
   ] as LinkEntry[],
 

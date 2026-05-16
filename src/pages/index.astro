@@ -13,7 +13,7 @@ import CmdK from "../components/CmdK.tsx";
   <main class="page">
     <div class="container">
       <header class="topbar">
-        <span class="quiet">~/iyasin.dev</span>
+        <span class="quiet">~/ihsaan.dev</span>
         <Ticker
           client:load
           location={SITE.location.toLowerCase()}
@@ -21,21 +21,22 @@ import CmdK from "../components/CmdK.tsx";
         />
       </header>
 
-      <h1 class="hero">iyasin<span class="dot">.</span></h1>
-      <p class="oneliner">{SITE.oneliner}</p>
+      <h1 class="hero">ihsaan<span class="dot">.</span></h1>
+
+      <section class="bio-block">
+        <SectionH>bio</SectionH>
+        <BioParagraph segments={SITE.bioSegments} />
+      </section>
 
       <div class="split">
         <div class="left">
-          <SectionH>bio</SectionH>
-          <BioParagraph segments={SITE.bioSegments} />
-
           <SectionH>work</SectionH>
           {SITE.work.map((w, i) => <WorkItem w={w} i={i} />)}
         </div>
 
         <aside class="right">
-          <SectionH>now</SectionH>
-          <p class="now-text">{SITE.now}</p>
+          <!-- <SectionH>now</SectionH> -->
+          <!-- <p class="now-text">{SITE.now}</p> -->
 
           <SectionH>writing</SectionH>
           {SITE.writing.map((w, i) => (
@@ -90,24 +91,23 @@ import CmdK from "../components/CmdK.tsx";
   .hero {
     margin: 40px 0 12px;
     font-family: var(--sans);
-    font-weight: 600;
+    font-weight: 650;
     font-size: 84px;
-    letter-spacing: -3px;
+    letter-spacing: -3.5px;
     line-height: 0.95;
+    font-variation-settings: "wght" 650;
   }
-  .dot { color: var(--accent); }
+  .dot {
+    color: var(--accent);
+    text-shadow: 0 0 22px color-mix(in srgb, var(--accent) 28%, transparent);
+  }
 
-  .oneliner {
-    margin: 0 0 8px;
-    font-size: 17px;
-    color: var(--ink);
-    max-width: 720px;
-    font-family: var(--sans);
-    line-height: 1.4;
+  .bio-block {
+    margin-top: 24px;
   }
 
   .split {
-    margin-top: 32px;
+    margin-top: 28px;
     display: grid;
     grid-template-columns: 1.6fr 1fr;
     gap: 56px;
@@ -144,8 +144,8 @@ import CmdK from "../components/CmdK.tsx";
   @media (max-width: 720px) {
     .container { padding: 28px 24px 40px; }
     .hero      { font-size: 56px; letter-spacing: -2px; }
-    .oneliner  { font-size: 15px; }
-    .split     { grid-template-columns: 1fr; gap: 0; margin-top: 16px; }
+    .bio-block { margin-top: 18px; }
+    .split     { grid-template-columns: 1fr; gap: 0; margin-top: 18px; }
     .right     { position: static; }
   }
 </style>
