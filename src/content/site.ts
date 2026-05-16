@@ -22,8 +22,8 @@ export const SITE = {
   fullName: "ihsaan",
   email: "iyasin@umich.edu",
   oneliner:
-    "Engineer. Medicine, infrastructure, and the occasional physical object.",
-  positioning: "Engineer. Medicine, infrastructure, and the occasional physical object.",
+    "Engineer. Healthcare, infrastructure, and the occasional physical object.",
+  positioning: "Engineer. Healthcare, infrastructure, and the occasional physical object.",
   timezone: "America/New_York",
 
   // Inline-linked bio. Strings render as text; {t, href} objects become
@@ -51,9 +51,13 @@ export const SITE = {
   ] as WorkEntry[],
 
   projects: [
-    { year: "ongoing", title: "Home server",       kind: "infra",    blurb: "Proxmox, 40TB, self-hosted media, ML inference, and dev sandboxes." },
-    { year: "—",       title: "Publications",      kind: "research", blurb: "Digital health information, infectious disease, patient education, and medical AI.", href: "https://scholar.google.com/citations?user=kUYiorwAAAAJ&hl=en" },
+    { year: "2025",    title: "Distributed search engine", kind: "systems",  blurb: "C++ crawler, indexer, sharded query engine, and web interface for large-scale document search.", href: "https://github.com/498-search-engine/mithril" },
+    { year: "ongoing", title: "Home server",               kind: "infra",    blurb: "Proxmox, Docker, reverse proxy, private networking, backups, media, ML inference, and dev sandboxes." },
+    { year: "—",       title: "Publications",              kind: "research", blurb: "Digital health information, infectious disease, patient education, and medical AI.", href: "https://scholar.google.com/citations?user=kUYiorwAAAAJ&hl=en" },
   ] as WorkEntry[],
+
+  current: "Focused on reliable AI systems for healthcare and infrastructure-heavy products.",
+  thinking: ["reliable agents", "memory systems", "clinical workflows", "search infrastructure"],
 
   writing: [] as WritingEntry[],
 

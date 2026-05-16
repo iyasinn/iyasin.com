@@ -30,6 +30,9 @@ import CmdK from "../components/CmdK.tsx";
           <SectionH>work</SectionH>
           {SITE.work.map((w, i) => <WorkItem w={w} i={i} />)}
 
+          <SectionH>projects</SectionH>
+          {SITE.projects.map((w, i) => <WorkItem w={w} i={i} />)}
+
         </section>
 
         <aside class="rail" aria-label="secondary information">
@@ -37,18 +40,6 @@ import CmdK from "../components/CmdK.tsx";
           <div class="elsewhere-list">
             {SITE.links.map((l) => (
               <a href={l.href} target="_blank" rel="noopener" class="mini-link">{l.label}</a>
-            ))}
-          </div>
-
-          <SectionH>projects</SectionH>
-          <div class="mini-list">
-            {SITE.projects.map((p) => (
-              <div class="mini-row project-row">
-                {p.href ? (
-                  <a href={p.href} target="_blank" rel="noopener" class="mini-link">{p.title}</a>
-                ) : <span>{p.title}</span>}
-                <span class="quiet">{p.year}</span>
-              </div>
             ))}
           </div>
 
@@ -133,7 +124,7 @@ import CmdK from "../components/CmdK.tsx";
 
   .split {
     display: flex;
-    gap: 64px;
+    gap: 72px;
     align-items: flex-start;
   }
 
@@ -143,7 +134,7 @@ import CmdK from "../components/CmdK.tsx";
   .rail {
     position: sticky;
     top: 28px;
-    flex: 0 0 220px;
+    flex: 0 0 235px;
     min-width: 0;
   }
 
@@ -184,9 +175,9 @@ import CmdK from "../components/CmdK.tsx";
   }
 
   .bottombar {
-    margin-top: 56px;
-    padding-top: 14px;
-    border-top: 1px solid var(--faint);
+    margin-top: 72px;
+    padding-top: 0;
+    border-top: 0;
     display: flex; justify-content: space-between;
     color: var(--quiet); font-size: 11px;
   }
