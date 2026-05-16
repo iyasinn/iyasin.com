@@ -29,13 +29,11 @@ export const SITE = {
   // Inline-linked bio. Strings render as text; {t, href} objects become
   // cobalt-underlined anchor tags inside the paragraph.
   bioSegments: [
-    "I study computer science at Michigan and build software for infrastructure, healthcare, and applied AI. I founded ",
-    { t: "Juniper", href: "https://juniper.com" },
-    ", worked on infrastructure at ",
-    { t: "Meta", href: "https://meta.com" },
-    ", built clinical data tooling at Courier Health, and have ",
-    { t: "publications", href: "https://scholar.google.com/citations?user=kUYiorwAAAAJ&hl=en" },
-    " across medicine and computational biology.",
+    "Computer science graduate from Michigan. I’ve built ",
+    { t: "healthcare software", href: "https://juniper.tech" },
+    ", infrastructure at scale, and applied AI systems. I’ve also published work on ",
+    { t: "digital health information", href: "https://scholar.google.com/citations?user=kUYiorwAAAAJ&hl=en" },
+    ", infectious disease, and patient education.",
   ] as BioSegment[],
 
   links: [
@@ -46,7 +44,7 @@ export const SITE = {
   ] as LinkEntry[],
 
   work: [
-    { year: "2025–26", title: "Juniper",        kind: "founder", blurb: "Built durable AI agent infrastructure for healthcare workflows; led pilots with health systems and raised seed funding.", href: "https://juniper.com" },
+    { year: "2025–26", title: "Juniper",        kind: "founder", blurb: "Built durable AI agent infrastructure for healthcare workflows; led pilots with health systems and raised funding.", href: "https://juniper.tech" },
     { year: "2025",    title: "Meta",           kind: "infra",   blurb: "Worked on media fetching infrastructure and reliability for large-scale product systems.", href: "https://meta.com" },
     { year: "2024",    title: "Courier Health", kind: "health",  blurb: "Built clinical data tooling for biopharma workflows, including ingest visibility, schema generation, and alerting.", href: "https://courierhealth.com" },
     { year: "2023",    title: "UMich EECS",     kind: "teaching", blurb: "Taught data structures and C++ through office hours and weekly labs.", href: "https://eecs.engin.umich.edu" },
@@ -54,7 +52,7 @@ export const SITE = {
 
   projects: [
     { year: "ongoing", title: "Home server",       kind: "infra",    blurb: "Proxmox, 40TB, self-hosted media, ML inference, and dev sandboxes." },
-    { year: "—",       title: "Publications",      kind: "research", blurb: "Across oncology, cardiology, and computational biology.", href: "https://scholar.google.com/citations?user=kUYiorwAAAAJ&hl=en" },
+    { year: "—",       title: "Publications",      kind: "research", blurb: "Digital health information, infectious disease, patient education, and medical AI.", href: "https://scholar.google.com/citations?user=kUYiorwAAAAJ&hl=en" },
   ] as WorkEntry[],
 
   writing: [] as WritingEntry[],
