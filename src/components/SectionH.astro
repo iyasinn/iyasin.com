@@ -1,0 +1,20 @@
+---
+// Section header: "# bio", "# work", etc.
+---
+
+<div class="section-h">
+  <span class="hash">#</span> <slot />
+</div>
+
+<style>
+  .section-h {
+    margin-top: 32px;
+    margin-bottom: 12px;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--faint);
+  }
+  .hash { color: var(--quiet); }
+</style>

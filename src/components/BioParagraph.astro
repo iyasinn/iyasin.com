@@ -1,0 +1,27 @@
+---
+import type { BioSegment } from "../content/site";
+interface Props { segments: BioSegment[] }
+const { segments } = Astro.props;
+---
+
+<p class="bio">
+  {segments.map((s) =>
+    typeof s === "string"
+      ? s
+      : (
+        <a href={s.href} target="_blank" rel="noopener" class="cobalt-link">
+          {s.t}
+        </a>
+      )
+  )}
+</p>
+
+<style>
+  .bio {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink);
+    max-width: 640px;
+  }
+</style>

@@ -1,0 +1,31 @@
+---
+import type { WorkEntry } from "../content/site";
+interface Props { w: WorkEntry; i: number }
+const { w, i } = Astro.props;
+---
+
+<div class="work-item" data-first={i === 0}>
+  <span class="num">{String(i + 1).padStart(2, "0")}</span>
+  <div>
+    <div class="title">{w.title}</div>
+    <div class="blurb">{w.blurb}</div>
+  </div>
+  <span class="year">{w.year}</span>
+</div>
+
+<style>
+  .work-item {
+    display: grid;
+    grid-template-columns: 26px 1fr 60px;
+    gap: 12px;
+    padding: 8px 0;
+    border-top: 1px solid var(--faint);
+    align-items: baseline;
+  }
+  .work-item[data-first="true"] { border-top: none; }
+
+  .num   { color: var(--accent); font-family: var(--mono); font-size: 11px; }
+  .title { font-family: var(--sans); font-size: 15px; font-weight: 500; }
+  .blurb { color: var(--quiet); font-size: 12px; margin-top: 1px; line-height: 1.5; }
+  .year  { color: var(--quiet); text-align: right; font-size: 11px; }
+</style>

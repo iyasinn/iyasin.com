@@ -1,0 +1,38 @@
+/* Palette + type tokens. Change these to retheme. */
+:root {
+  --bg:     #ffffff;
+  --ink:    #0a0a0a;
+  --quiet:  #8a8a8a;
+  --faint:  #e6e6e6;
+  --accent: #1e4eea;   /* cobalt — the only color on the page */
+
+  --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui,
+    sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a       { color: inherit; }
+button  { font: inherit; cursor: pointer; }
+::selection { background: var(--accent); color: #fff; }
+
+/* shared utility used by inline-link components */
+.cobalt-link {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+}
+.quiet { color: var(--quiet); }

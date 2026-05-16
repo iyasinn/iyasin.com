@@ -1,43 +1,40 @@
-# Astro Starter Kit: Minimal
+# iyasin.com — Astro
+
+Static-first personal site. The whole page is server-rendered HTML; only the
+live clock, cursor readout, and ⌘K palette ship JS (React islands).
+
+## Run
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
+npm run dev          # http://localhost:4321
+npm run build        # → dist/
+npm run preview      # serve the built site
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Where things live
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```
+src/
+├── content/site.ts        ← all copy, links, work, writing — edit here
+├── layouts/Base.astro     ← <html> shell, fonts, global CSS
+├── pages/index.astro      ← the whole layout, server-rendered
+├── styles/global.css      ← palette tokens (--ink, --accent, ...) + reset
+└── components/
+    ├── SectionH.astro     ← "# bio", "# work" headers
+    ├── WorkItem.astro     ← one work row
+    ├── BioParagraph.astro ← bio paragraph with inline links
+    ├── Ticker.tsx         ← live location · time (React island)
+    ├── Cursor.tsx         ← live mouse coords (React island)
+    └── CmdK.tsx           ← ⌘K command palette (React island)
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Re-theming
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+The palette is CSS custom properties in `src/styles/global.css`. Change
+`--accent` (currently cobalt `#1e4eea`) to retheme the whole site.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Deploy
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Static site — drop `dist/` on Cloudflare Pages / Vercel / Netlify / GitHub
+Pages. No server needed.

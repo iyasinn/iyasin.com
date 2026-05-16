@@ -1,16 +1,151 @@
 ---
-
+import Base from "../layouts/Base.astro";
+import { SITE } from "../content/site";
+import SectionH from "../components/SectionH.astro";
+import WorkItem from "../components/WorkItem.astro";
+import BioParagraph from "../components/BioParagraph.astro";
+import Ticker from "../components/Ticker.tsx";
+import Cursor from "../components/Cursor.tsx";
+import CmdK from "../components/CmdK.tsx";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base title={SITE.fullName} description={SITE.oneliner}>
+  <main class="page">
+    <div class="container">
+      <header class="topbar">
+        <span class="quiet">~/iyasin.dev</span>
+        <Ticker
+          client:load
+          location={SITE.location.toLowerCase()}
+          timezone={SITE.timezone}
+        />
+      </header>
+
+      <h1 class="hero">iyasin<span class="dot">.</span></h1>
+      <p class="oneliner">{SITE.oneliner}</p>
+
+      <div class="split">
+        <div class="left">
+          <SectionH>bio</SectionH>
+          <BioParagraph segments={SITE.bioSegments} />
+
+          <SectionH>work</SectionH>
+          {SITE.work.map((w, i) => <WorkItem w={w} i={i} />)}
+        </div>
+
+        <aside class="right">
+          <SectionH>now</SectionH>
+          <p class="now-text">{SITE.now}</p>
+
+          <SectionH>writing</SectionH>
+          {SITE.writing.map((w, i) => (
+            <div class="row-writing" data-first={i === 0}>
+              <div class="row-date">{w.date}</div>
+              <div>{w.title}</div>
+            </div>
+          ))}
+
+          <SectionH>reading</SectionH>
+          {SITE.reading.slice(0, 4).map((b) => (
+            <div class="row-reading">
+              <span>{b.title}</span>
+              <span class="quiet"> — {b.author}</span>
+            </div>
+          ))}
+
+          <SectionH>elsewhere</SectionH>
+          {SITE.links.map((l) => (
+            <div class="row-link">
+              <span class="quiet">{l.label}</span>
+              <a href={l.href} target="_blank" rel="noopener" class="cobalt-link">
+                {l.handle}
+              </a>
+            </div>
+          ))}
+        </aside>
+      </div>
+
+      <footer class="bottombar">
+        <Cursor client:load />
+        <CmdK client:load />
+      </footer>
+    </div>
+  </main>
+</Base>
+
+<style>
+  .page { min-height: 100vh; }
+  .container {
+    padding: 44px 64px 56px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .topbar {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--faint);
+  }
+
+  .hero {
+    margin: 40px 0 12px;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 84px;
+    letter-spacing: -3px;
+    line-height: 0.95;
+  }
+  .dot { color: var(--accent); }
+
+  .oneliner {
+    margin: 0 0 8px;
+    font-size: 17px;
+    color: var(--ink);
+    max-width: 720px;
+    font-family: var(--sans);
+    line-height: 1.4;
+  }
+
+  .split {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 56px;
+  }
+
+  .right { position: sticky; top: 32px; align-self: start; }
+  .now-text { margin: 0; font-size: 13px; }
+
+  .row-writing {
+    padding: 4px 0;
+    border-top: 1px solid var(--faint);
+  }
+  .row-writing[data-first="true"] { border-top: none; }
+  .row-date { color: var(--quiet); font-size: 11px; }
+
+  .row-reading { font-size: 12.5px; padding: 1px 0; }
+
+  .row-link {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 12px;
+    padding: 2px 0;
+  }
+
+  .bottombar {
+    margin-top: 48px;
+    padding-top: 14px;
+    border-top: 1px solid var(--faint);
+    display: flex; justify-content: space-between;
+    color: var(--quiet); font-size: 11px;
+  }
+
+  /* ───────── mobile ───────── */
+  @media (max-width: 720px) {
+    .container { padding: 28px 24px 40px; }
+    .hero      { font-size: 56px; letter-spacing: -2px; }
+    .oneliner  { font-size: 15px; }
+    .split     { grid-template-columns: 1fr; gap: 0; margin-top: 16px; }
+    .right     { position: static; }
+  }
+</style>
