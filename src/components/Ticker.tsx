@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 
 interface Props {
-  location: string;
   timezone: string;
 }
 
-export default function Ticker({ location, timezone }: Props) {
+export default function Ticker({ timezone }: Props) {
   const [t, setT] = useState<Date | null>(null);
 
   useEffect(() => {
@@ -33,7 +32,7 @@ export default function Ticker({ location, timezone }: Props) {
         letterSpacing: 0.4,
       }}
     >
-      {location} · {fmt}
+      {fmt}
     </span>
   );
 }

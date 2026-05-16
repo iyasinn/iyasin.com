@@ -4,28 +4,63 @@ interface Props { w: WorkEntry; i: number }
 const { w, i } = Astro.props;
 ---
 
-<div class="work-item" data-first={i === 0}>
-  <span class="num">{String(i + 1).padStart(2, "0")}</span>
-  <div>
-    <div class="title">{w.title}</div>
-    <div class="blurb">{w.blurb}</div>
+<article class="work-item" data-first={i === 0}>
+  <div class="copy">
+    <h3 class="title">
+      {w.href ? (
+        <a href={w.href} target="_blank" rel="noopener" class="title-link">{w.title}</a>
+      ) : w.title}
+    </h3>
+    <p class="blurb">{w.blurb}</p>
   </div>
-  <span class="year">{w.year}</span>
-</div>
+  <time class="year">{w.year}</time>
+</article>
 
 <style>
   .work-item {
     display: grid;
-    grid-template-columns: 26px 1fr 60px;
-    gap: 12px;
-    padding: 8px 0;
-    border-top: 1px solid var(--faint);
-    align-items: baseline;
+    grid-template-columns: minmax(0, 1fr) max-content;
+    gap: 20px;
+    padding: 12px 0;
+    border-top: 1px solid color-mix(in srgb, var(--faint) 78%, transparent);
+    align-items: start;
   }
   .work-item[data-first="true"] { border-top: none; }
 
-  .num   { color: var(--accent); font-family: var(--mono); font-size: 11px; }
-  .title { font-family: var(--sans); font-size: 15px; font-weight: 500; }
-  .blurb { color: var(--quiet); font-size: 12px; margin-top: 1px; line-height: 1.5; }
-  .year  { color: var(--quiet); text-align: right; font-size: 11px; }
+  .copy { min-width: 0; }
+  .title {
+    margin: 0;
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.25;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .title-link {
+    color: inherit;
+    text-decoration: none;
+  }
+  .title-link:hover,
+  .title-link:focus-visible {
+    color: var(--accent);
+    outline: none;
+  }
+  .blurb {
+    max-width: 54ch;
+    margin: 5px 0 0;
+    color: var(--quiet);
+    font-size: 12px;
+    line-height: 1.55;
+  }
+  .year {
+    color: var(--quiet);
+    text-align: right;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 560px) {
+    .work-item { grid-template-columns: 1fr; gap: 6px; padding: 15px 0; }
+    .year { grid-row: 1; text-align: left; }
+  }
 </style>

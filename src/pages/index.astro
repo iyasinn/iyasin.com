@@ -12,57 +12,70 @@ import CmdK from "../components/CmdK.tsx";
 <Base title={SITE.fullName} description={SITE.oneliner}>
   <main class="page">
     <div class="container">
-      <header class="topbar">
-        <span class="quiet">~/ihsaan.dev</span>
-        <Ticker
-          client:load
-          location={SITE.location.toLowerCase()}
-          timezone={SITE.timezone}
-        />
-      </header>
-
-      <h1 class="hero">ihsaan<span class="dot">.</span></h1>
-
-      <section class="bio-block">
-        <SectionH>bio</SectionH>
-        <BioParagraph segments={SITE.bioSegments} />
-      </section>
+      <div class="identity">
+        <h1 class="hero">ihsaan</h1>
+        <p class="dek">{SITE.positioning}</p>
+        <div class="meta-line">
+          <Ticker client:load timezone={SITE.timezone} />
+        </div>
+      </div>
 
       <div class="split">
-        <div class="left">
+        <section class="primary">
+          <section class="bio-block">
+            <SectionH>bio</SectionH>
+            <BioParagraph segments={SITE.bioSegments} />
+          </section>
+
           <SectionH>work</SectionH>
           {SITE.work.map((w, i) => <WorkItem w={w} i={i} />)}
-        </div>
 
-        <aside class="right">
-          <!-- <SectionH>now</SectionH> -->
-          <!-- <p class="now-text">{SITE.now}</p> -->
+        </section>
 
-          <SectionH>writing</SectionH>
-          {SITE.writing.map((w, i) => (
-            <div class="row-writing" data-first={i === 0}>
-              <div class="row-date">{w.date}</div>
-              <div>{w.title}</div>
-            </div>
-          ))}
+        <aside class="rail" aria-label="secondary information">
+          <SectionH>elsewhere</SectionH>
+          <div class="elsewhere-list">
+            {SITE.links.map((l) => (
+              <a href={l.href} target="_blank" rel="noopener" class="mini-link">{l.label}</a>
+            ))}
+          </div>
+
+          <SectionH>projects</SectionH>
+          <div class="mini-list">
+            {SITE.projects.map((p) => (
+              <div class="mini-row project-row">
+                {p.href ? (
+                  <a href={p.href} target="_blank" rel="noopener" class="mini-link">{p.title}</a>
+                ) : <span>{p.title}</span>}
+                <span class="quiet">{p.year}</span>
+              </div>
+            ))}
+          </div>
+
+          {SITE.writing.length > 0 && (
+            <>
+              <SectionH>writing</SectionH>
+              <div class="mini-list">
+                {SITE.writing.map((w) => (
+                  <div class="mini-row">
+                    <span>{w.title}</span>
+                    <span class="quiet">{w.date}</span>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
 
           <SectionH>reading</SectionH>
-          {SITE.reading.slice(0, 4).map((b) => (
-            <div class="row-reading">
-              <span>{b.title}</span>
-              <span class="quiet"> — {b.author}</span>
-            </div>
-          ))}
+          <div class="mini-list">
+            {SITE.reading.slice(0, 4).map((b) => (
+              <div class="mini-row book">
+                <span>{b.title}</span>
+                <span class="quiet">{b.author}</span>
+              </div>
+            ))}
+          </div>
 
-          <SectionH>elsewhere</SectionH>
-          {SITE.links.map((l) => (
-            <div class="row-link">
-              <span class="quiet">{l.label}</span>
-              <a href={l.href} target="_blank" rel="noopener" class="cobalt-link">
-                {l.handle}
-              </a>
-            </div>
-          ))}
         </aside>
       </div>
 
@@ -77,63 +90,101 @@ import CmdK from "../components/CmdK.tsx";
 <style>
   .page { min-height: 100vh; }
   .container {
-    padding: 44px 64px 56px;
-    max-width: 1080px;
+    padding: 42px 48px 52px;
+    width: min(100%, 920px);
     margin: 0 auto;
   }
 
-  .topbar {
-    display: flex; justify-content: space-between; align-items: baseline;
-    padding-bottom: 14px;
-    border-bottom: 1px solid var(--faint);
+  .identity {
+    margin: 18px 0 30px;
   }
 
   .hero {
-    margin: 40px 0 12px;
-    font-family: var(--sans);
-    font-weight: 650;
-    font-size: 84px;
-    letter-spacing: -3.5px;
-    line-height: 0.95;
-    font-variation-settings: "wght" 650;
-  }
-  .dot {
-    color: var(--accent);
-    text-shadow: 0 0 22px color-mix(in srgb, var(--accent) 28%, transparent);
+    margin: 0;
+    width: max-content;
+    max-width: 100%;
+    font-family: "Newsreader", Georgia, serif;
+    font-weight: 300;
+    font-size: clamp(72px, 9vw, 116px);
+    letter-spacing: -0.075em;
+    line-height: 0.82;
+    font-style: italic;
+    transform: translateX(-4px);
+    color: var(--ink);
+    text-shadow: none;
   }
 
-  .bio-block {
-    margin-top: 24px;
+  .dek {
+    max-width: 48ch;
+    margin: 16px 0 0;
+    color: var(--quiet);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .meta-line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin-top: 12px;
+    color: var(--quiet);
+    font-size: 11px;
   }
 
   .split {
-    margin-top: 28px;
-    display: grid;
-    grid-template-columns: 1.6fr 1fr;
-    gap: 56px;
+    display: flex;
+    gap: 64px;
+    align-items: flex-start;
   }
 
-  .right { position: sticky; top: 32px; align-self: start; }
-  .now-text { margin: 0; font-size: 13px; }
+  .primary { flex: 1 1 0; min-width: 0; }
+  .bio-block { margin-top: 0; }
 
-  .row-writing {
-    padding: 4px 0;
-    border-top: 1px solid var(--faint);
+  .rail {
+    position: sticky;
+    top: 28px;
+    flex: 0 0 220px;
+    min-width: 0;
   }
-  .row-writing[data-first="true"] { border-top: none; }
-  .row-date { color: var(--quiet); font-size: 11px; }
 
-  .row-reading { font-size: 12.5px; padding: 1px 0; }
-
-  .row-link {
+  .mini-list {
     display: grid;
-    grid-template-columns: 80px 1fr;
-    gap: 12px;
-    padding: 2px 0;
+    gap: 9px;
+  }
+
+  .mini-row {
+    display: grid;
+    gap: 1px;
+    font-size: 11.5px;
+    line-height: 1.35;
+  }
+  .elsewhere-list {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    gap: 7px 18px;
+    font-size: 12px;
+  }
+
+  .mini-row.book { gap: 0; }
+  .mini-link {
+    color: inherit;
+    text-decoration: none;
+  }
+  .mini-link:hover,
+  .mini-link:focus-visible {
+    color: var(--accent);
+    outline: none;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    font-size: 12px;
   }
 
   .bottombar {
-    margin-top: 48px;
+    margin-top: 56px;
     padding-top: 14px;
     border-top: 1px solid var(--faint);
     display: flex; justify-content: space-between;
@@ -143,9 +194,9 @@ import CmdK from "../components/CmdK.tsx";
   /* ───────── mobile ───────── */
   @media (max-width: 720px) {
     .container { padding: 28px 24px 40px; }
-    .hero      { font-size: 56px; letter-spacing: -2px; }
-    .bio-block { margin-top: 18px; }
-    .split     { grid-template-columns: 1fr; gap: 0; margin-top: 18px; }
-    .right     { position: static; }
+    .identity { margin-top: 12px; }
+    .hero { font-size: 66px; letter-spacing: -0.06em; }
+    .split { flex-direction: column; gap: 6px; }
+    .rail { position: static; }
   }
 </style>

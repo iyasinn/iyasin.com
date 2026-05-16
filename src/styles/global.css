@@ -1,9 +1,9 @@
 /* Palette + type tokens. Change these to retheme. */
 :root {
-  --bg:     #ffffff;
+  --bg:     #fbf8f2;
   --ink:    #0a0a0a;
-  --quiet:  #8a8a8a;
-  --faint:  #e6e6e6;
+  --quiet:  #74716c;
+  --faint:  #ddd6cc;
   --accent: #1e4eea;   /* cobalt — the only color on the page */
 
   --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -16,13 +16,31 @@
 html, body {
   margin: 0;
   padding: 0;
-  background: var(--bg);
+  min-height: 100%;
+  background:
+    radial-gradient(circle at 18% 10%, rgba(30, 78, 234, 0.055), transparent 32rem),
+    radial-gradient(circle at 86% 18%, rgba(0, 0, 0, 0.035), transparent 28rem),
+    var(--bg);
   color: var(--ink);
   font-family: var(--mono);
   font-size: 13px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.18;
+  filter: contrast(1.12) blur(0.12px);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='.74'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: cover;
+  mix-blend-mode: multiply;
 }
 
 a       { color: inherit; }

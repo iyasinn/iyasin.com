@@ -1,4 +1,7 @@
-// All content for the site. Edit copy and links here.
+// Main site config. Add/edit almost everything on the homepage here.
+// - bioSegments: strings render as normal text; { t, href } renders an inline link
+// - work/projects: add a new object to show another row
+// - writing/reading/links: these populate the right rail, hero links, and Cmd+K search
 
 export type BioSegment = string | { t: string; href: string };
 
@@ -7,6 +10,7 @@ export type WorkEntry = {
   title: string;
   kind: string;
   blurb: string;
+  href?: string;
 };
 
 export type WritingEntry = { date: string; title: string };
@@ -16,51 +20,48 @@ export type LinkEntry = { label: string; href: string; handle: string };
 export const SITE = {
   handle: "ihsaan",
   fullName: "ihsaan",
+  email: "iyasin@umich.edu",
   oneliner:
     "Engineer. Medicine, infrastructure, and the occasional physical object.",
-  location: "Cambridge, MA",
+  positioning: "Engineer. Medicine, infrastructure, and the occasional physical object.",
   timezone: "America/New_York",
 
   // Inline-linked bio. Strings render as text; {t, href} objects become
   // cobalt-underlined anchor tags inside the paragraph.
   bioSegments: [
-    "Fifteen ",
-    { t: "papers in medicine", href: "https://scholar.google.com/" },
-    ". Started a ",
-    { t: "healthcare company", href: "#" },
-    " (raised $1M, had paying customers). Interned on infrastructure at ",
+    "I study computer science at Michigan and build software for infrastructure, healthcare, and applied AI. I founded ",
+    { t: "Juniper", href: "https://juniper.com" },
+    ", worked on infrastructure at ",
     { t: "Meta", href: "https://meta.com" },
-    " and at a biopharma lab. Sometimes I ",
-    { t: "build watches", href: "#" },
-    ".",
+    ", built clinical data tooling at Courier Health, and have ",
+    { t: "publications", href: "https://scholar.google.com/citations?user=kUYiorwAAAAJ&hl=en" },
+    " across medicine and computational biology.",
   ] as BioSegment[],
 
   links: [
     { label: "github",   href: "https://github.com/iyasinn",      handle: "iyasinn" },
-    { label: "linkedin", href: "https://linkedin.com/in/iyasinn", handle: "iyasinn" },
-    { label: "email",    href: "mailto:hello@ihsaan.dev",          handle: "hello@ihsaan.dev" },
-    { label: "twitter",  href: "https://twitter.com/iyasinn",      handle: "iyasinn" },
+    { label: "linkedin", href: "https://linkedin.com/in/ihsaanyasin", handle: "ihsaanyasin" },
+    { label: "email",    href: "mailto:iyasin@umich.edu",          handle: "iyasin@umich.edu" },
+    { label: "twitter",  href: "https://twitter.com/ihsaan_yasin",  handle: "ihsaan_yasin" },
   ] as LinkEntry[],
 
   work: [
-    { year: "now",     title: "Simulation of the world",   kind: "research",   blurb: "Long-running multi-agent simulation with evolving rules. Trying to make a world that surprises me." },
-    { year: "2024",    title: "Healthcare startup",        kind: "company",    blurb: "Founded, raised $1M, shipped to paying clients in clinical settings." },
-    { year: "2024",    title: "Infra engineering · Meta",  kind: "internship", blurb: "Worked on internal infrastructure tooling at the platform scale you'd expect." },
-    { year: "2023",    title: "Biopharma research intern", kind: "internship", blurb: "Wet-lab + computational. Contributed to two of the fifteen." },
-    { year: "2023",    title: "MTC",                       kind: "community",  blurb: "Built a student tech community. Took a cohort through the Google office." },
-    { year: "2022",    title: "Wristwatch · from scratch", kind: "object",     blurb: "PCB, firmware, machined case. Keeps time within a few seconds a day." },
-    { year: "ongoing", title: "Home server",               kind: "object",     blurb: "Proxmox, 40TB, self-hosted media + ML inference + dev sandboxes." },
-    { year: "—",       title: "15 publications",           kind: "research",   blurb: "Across oncology, cardiology, and computational biology. Index on Scholar." },
+    { year: "2025–26", title: "Juniper",        kind: "founder", blurb: "Built durable AI agent infrastructure for healthcare workflows; led pilots with health systems and raised seed funding.", href: "https://juniper.com" },
+    { year: "2025",    title: "Meta",           kind: "infra",   blurb: "Worked on media fetching infrastructure and reliability for large-scale product systems.", href: "https://meta.com" },
+    { year: "2024",    title: "Courier Health", kind: "health",  blurb: "Built clinical data tooling for biopharma workflows, including ingest visibility, schema generation, and alerting.", href: "https://courierhealth.com" },
+    { year: "2023",    title: "UMich EECS",     kind: "teaching", blurb: "Taught data structures and C++ through office hours and weekly labs.", href: "https://eecs.engin.umich.edu" },
   ] as WorkEntry[],
 
-  writing: [
-    { date: "2025.03", title: "Notes on simulating worlds that surprise you" },
-    { date: "2024.11", title: "What I learned shipping clinical software" },
-    { date: "2024.06", title: "Building a watch in a bedroom" },
-    { date: "2023.09", title: "How to read a paper in 20 minutes" },
-  ] as WritingEntry[],
+  projects: [
+    { year: "ongoing", title: "Home server",       kind: "infra",    blurb: "Proxmox, 40TB, self-hosted media, ML inference, and dev sandboxes." },
+    { year: "—",       title: "Publications",      kind: "research", blurb: "Across oncology, cardiology, and computational biology.", href: "https://scholar.google.com/citations?user=kUYiorwAAAAJ&hl=en" },
+  ] as WorkEntry[],
+
+  writing: [] as WritingEntry[],
 
   reading: [
+    { author: "Muhammad Asad",        title: "The Road to Mecca" },
+    { author: "Brandon Sanderson",    title: "The Lost Metal" },
     { author: "Italo Calvino",        title: "Invisible Cities" },
     { author: "Donella Meadows",      title: "Thinking in Systems" },
     { author: "Stewart Brand",        title: "How Buildings Learn" },
@@ -68,5 +69,5 @@ export const SITE = {
     { author: "Richard Hamming",      title: "The Art of Doing Science and Engineering" },
   ] as ReadingEntry[],
 
-  now: "Building a world-simulator on nights and weekends. Reading Calvino. Tuning the watch.",
+  now: "Reading The Road to Mecca and The Lost Metal.",
 };

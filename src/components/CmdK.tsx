@@ -38,6 +38,9 @@ function Palette({ onClose }: { onClose: () => void }) {
   const items: Item[] = useMemo(() => {
     const out: Item[] = [];
     SITE.work.forEach((w) =>
+      out.push({ kind: "work", label: w.title, sub: `${w.year} · ${w.kind}` })
+    );
+    SITE.projects.forEach((w) =>
       out.push({ kind: "project", label: w.title, sub: `${w.year} · ${w.kind}` })
     );
     SITE.writing.forEach((w) =>
