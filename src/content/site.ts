@@ -22,8 +22,8 @@ export const SITE = {
   fullName: "ihsaan",
   email: "iyasin@umich.edu",
   oneliner:
-    "Engineer. Healthcare, infrastructure, and the occasional physical object.",
-  positioning: "Engineer. Healthcare, infrastructure, and the occasional physical object.",
+    "Engineer and researcher.",
+  positioning: "Engineer and researcher.",
   timezone: "America/New_York",
 
   // Inline-linked bio. Strings render as text; {t, href} objects become
@@ -44,7 +44,8 @@ export const SITE = {
   ] as LinkEntry[],
 
   work: [
-    { year: "2025–26", title: "Juniper",        kind: "founder", blurb: "Built durable AI agent infrastructure for healthcare workflows; led pilots with health systems and raised funding.", href: "https://juniper.tech" },
+    { year: "2026",    title: "Stealth consulting", kind: "consulting", blurb: "Technical consulting on AI infrastructure, internal tools, and product systems." },
+    { year: "2024–26", title: "Juniper",        kind: "founder", blurb: "Built durable AI agent infrastructure for healthcare workflows; led pilots with health systems and raised funding.", href: "https://juniper.tech" },
     { year: "2025",    title: "Meta",           kind: "infra",   blurb: "Worked on media fetching infrastructure and reliability for large-scale product systems.", href: "https://meta.com" },
     { year: "2024",    title: "Courier Health", kind: "health",  blurb: "Built clinical data tooling for biopharma workflows, including ingest visibility, schema generation, and alerting.", href: "https://courierhealth.com" },
     { year: "2023",    title: "UMich EECS",     kind: "teaching", blurb: "Taught data structures and C++ through office hours and weekly labs.", href: "https://eecs.engin.umich.edu" },
@@ -52,7 +53,6 @@ export const SITE = {
 
   projects: [
     { year: "2025",    title: "Distributed search engine", kind: "systems",  blurb: "C++ crawler, indexer, sharded query engine, and web interface for large-scale document search.", href: "https://github.com/498-search-engine/mithril" },
-    { year: "ongoing", title: "Home server",               kind: "infra",    blurb: "Proxmox, Docker, reverse proxy, private networking, backups, media, ML inference, and dev sandboxes." },
     { year: "—",       title: "Publications",              kind: "research", blurb: "Digital health information, infectious disease, patient education, and medical AI.", href: "https://scholar.google.com/citations?user=kUYiorwAAAAJ&hl=en" },
   ] as WorkEntry[],
 

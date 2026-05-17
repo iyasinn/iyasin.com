@@ -12,6 +12,10 @@ import CmdK from "../components/CmdK.tsx";
 <Base title={SITE.fullName} description={SITE.oneliner}>
   <main class="page">
     <div class="container">
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode" data-theme-toggle>
+        dark
+      </button>
+
       <div class="identity">
         <h1 class="hero">ihsaan</h1>
         <p class="dek">{SITE.positioning}</p>
@@ -78,12 +82,47 @@ import CmdK from "../components/CmdK.tsx";
   </main>
 </Base>
 
+<script is:inline>
+  const button = document.querySelector("[data-theme-toggle]");
+  const setLabel = () => {
+    if (!button) return;
+    button.textContent = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  };
+  setLabel();
+  button?.addEventListener("click", () => {
+    const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem("theme", next);
+    setLabel();
+  });
+</script>
+
 <style>
   .page { min-height: 100vh; }
   .container {
     padding: 42px 48px 52px;
     width: min(100%, 920px);
     margin: 0 auto;
+  }
+
+  .theme-toggle {
+    position: fixed;
+    top: 18px;
+    right: 20px;
+    z-index: 2;
+    padding: 3px 8px;
+    border: 1px solid var(--faint);
+    background: color-mix(in srgb, var(--bg) 72%, transparent);
+    color: var(--quiet);
+    font-family: var(--mono);
+    font-size: 11px;
+    line-height: 1.4;
+  }
+  .theme-toggle:hover,
+  .theme-toggle:focus-visible {
+    color: var(--ink);
+    border-color: var(--quiet);
+    outline: none;
   }
 
   .identity {
@@ -132,8 +171,6 @@ import CmdK from "../components/CmdK.tsx";
   .bio-block { margin-top: 0; }
 
   .rail {
-    position: sticky;
-    top: 28px;
     flex: 0 0 235px;
     min-width: 0;
   }
