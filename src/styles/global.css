@@ -41,7 +41,7 @@ html[data-theme="dark"],
 html[data-theme="dark"] body {
   background:
     linear-gradient(rgba(12, 12, 10, 0.58), rgba(8, 8, 7, 0.78)),
-    url("/images/black-concrete-textured-background.jpg");
+    url("/images/black-grain.avif");
   background-size: auto, 620px auto;
 }
 
